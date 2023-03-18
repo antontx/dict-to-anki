@@ -3,17 +3,18 @@ import json
 
 ANKI_URL = "http://localhost:8765"
 
+
 def main():
-    testDeck = {
-        "a" : "A",
-        "b" : "B",
-        "c" : "C"
+    test_deck = {
+        "a": "A",
+        "b": "B",
+        "c": "C"
     }
 
-    newDeck("test","Basic (and reversed card)",testDeck)
+    new_deck("test", "Basic (and reversed card)", test_deck)
 
 
-def newDeck(deck_name, card_type, cards):
+def new_deck(deck_name, card_type, cards):
     deck = {
         "action": "createDeck",
         "version": 6,
@@ -23,7 +24,6 @@ def newDeck(deck_name, card_type, cards):
     }
     response = requests.post(ANKI_URL, json.dumps(deck))
     print(response.text)
-
 
     for front, back in cards.items():
         note_data = {
@@ -49,7 +49,5 @@ def newDeck(deck_name, card_type, cards):
         print(response.text)
 
 
-
 if __name__ == '__main__':
     main()
-
